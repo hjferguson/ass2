@@ -66,7 +66,7 @@ def menu():
             if (exit == "y"):
                 newScore(currScore)
                 break
-            elif (exit == "n"):
+            else:
                 continue
         else:
             print(f"Sorry! That's wrong! The correct answer is {answer}.")
@@ -75,6 +75,6 @@ def menu():
             if (exit == "y"):
                 newScore(currScore)
                 break
-            elif (exit == "n"):
+            else:
                 continue  
 
