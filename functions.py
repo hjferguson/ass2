@@ -1,4 +1,5 @@
 #Harlan Ferguson 101133838
+#Lab Professor: Michael Murphy
 #Collection of all functions required for this assignment
 import random 
 import time
