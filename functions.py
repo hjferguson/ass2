@@ -2,9 +2,9 @@
 import random 
 
 def randomEquation():
-    symbols = ("*","/","+","-")
-    ranInt1 = random.randrange(0,11)
-    ranInt2 = random.randrange(0,11)
+    symbols = ("*","+","-")
+    ranInt1 = random.randrange(1,11)
+    ranInt2 = random.randrange(1,11)
     ranOperator = random.choice(symbols) 
 
     print(f"What is {ranInt1} {ranOperator} {ranInt2}?")
@@ -12,17 +12,11 @@ def randomEquation():
     if (ranOperator == "*"):
         answer = ranInt1 * ranInt2
         return answer
-    elif (ranOperator == "/"):
-        try:
-            answer = ranInt1 / ranInt2
-            return answer
-        except(ZeroDivisionError):
-            ranInt1 = random.randrange(1,11)
-            answer = ranInt1 / ranInt2
-            return answer
+    
     elif (ranOperator == "+"):
         answer = ranInt1 + ranInt2
         return answer
+    
     elif (ranOperator == "-"):
         answer = ranInt1 - ranInt2
         return answer
@@ -39,6 +33,24 @@ def isEmpty(): #need to also check to see if file exsists
             return False
     return True
 
+def isFileOk():
+    try:
+        with open("Score.txt", "r") as file:
+            content = file.readline()
+    
+    except FileNotFoundError:
+        print("File not found. No problem! Making a new one")
+        with open("Score.txt","w") as file:
+            file.write("")
+    
+    except OSError:
+        print("File found, but issue opening it. Please ensure it is not open somewhere else.")
+
+    except Exception as e:
+        print(f"Ran into an unexpected error: {e}")
+
+
+
 def getScore():
     with open("Score.txt","r") as file:
         content = file.read()
@@ -50,6 +62,7 @@ def newScore(score):
 
 def menu():
     currScore = 0
+    isFileOk()
     if isEmpty():
         print("Welcome to your math game!")
     else:
@@ -65,6 +78,9 @@ def menu():
             exit = input("Would you like to stop playing? y/n").lower()
             if (exit == "y"):
                 newScore(currScore)
+                print("Thanks for playing!")
+                print(f"Your current score is {currScore}")
+                print("WOW!")
                 break
             else:
                 continue
